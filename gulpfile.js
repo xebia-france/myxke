@@ -26,6 +26,7 @@ var rimraf = require('rimraf');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed = require('psi');
+var deploy = require('gulp-gh-pages');
 var reload = browserSync.reload;
 
 // Lint JavaScript
@@ -129,6 +130,12 @@ gulp.task('serve', function () {
   gulp.watch(['.tmp/styles/**/*.css'], reload);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], ['images']);
+});
+
+gulp.task('deploy', function () {
+    var options = {};    
+    return gulp.src('./dist/**/*')
+        .pipe(deploy(options));
 });
 
 // Build Production Files, the Default Task
