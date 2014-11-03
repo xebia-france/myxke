@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-        <title>Web Starter Kit</title>
+        <title>My XKE</title>
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta name="mobile-web-app-capable" content="yes">
@@ -42,6 +42,9 @@
         <link rel="stylesheet" href="styles/components/components.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
+        <script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
     </head>
     <body>
         <header class="app-bar promote-layer">
@@ -64,11 +67,31 @@
         </nav>
 
         <main>
-            <h1 id="hello">Hello!</h1>
-            <p>Welcome to Web Starter Kit.</p>
-
-            <h2 id="get-started">Get Started.</h2>
-            <p>Read how to <a href="http://developers.google.com/web/starter-kit">Get Started</a> or check out the <a href="styleguide/index.html">Style Guide</a>.</p>
+            <p>
+    <div id='messagesDiv'></div></p>
+            <p>
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='messageInput' placeholder='Message'>
+    <script>
+      var myDataRef = new Firebase('https://lp2zslb435p.firebaseio-demo.com/');
+      $('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var text = $('#messageInput').val();
+          myDataRef.push({name: name, text: text});
+          $('#messageInput').val('');
+        }
+      });
+      myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessage(message.name, message.text);
+      });
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+    </script>
+    </p>
         </main>
 
         <!-- build:js scripts/main.min.js -->
