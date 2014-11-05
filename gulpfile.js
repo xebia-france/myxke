@@ -41,10 +41,10 @@ gulp.task('jshint', function () {
 // Optimize Images
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
       progressive: true,
       interlaced: true
-    })))
+    }))
     .pipe(gulp.dest('dist/images'))
     .pipe(reload({stream: true, once: true}))
     .pipe($.size({title: 'images'}));
@@ -133,9 +133,28 @@ gulp.task('serve', function () {
 });
 
 gulp.task('deploy', function () {
-    var options = {};    
+    var options = {};
     return gulp.src('./dist/**/*')
         .pipe(deploy(options));
+});
+
+var site = 'http://www.html5rocks.com';
+gulp.task('mobile', function (cb) {
+	pagespeed({
+		// key: key
+		nokey: 'true',
+		url: site,
+		strategy: 'mobile',
+	}, cb);
+});
+
+gulp.task('desktop', function (cb) {
+	pagespeed({
+		// key: key,
+		nokey: 'true',
+		url: site,
+		strategy: 'desktop',
+	}, cb);
 });
 
 // Build Production Files, the Default Task

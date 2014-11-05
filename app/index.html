@@ -1,112 +1,280 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-        <title>My XKE</title>
 
-        <!-- Add to homescreen for Chrome on Android -->
-        <meta name="mobile-web-app-capable" content="yes">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+  <title>My XKE</title>
 
-        <!-- iOS icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/touch/apple-touch-icon-144x144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/touch/apple-touch-icon-114x114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/touch/apple-touch-icon-72x72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="images/touch/apple-touch-icon-57x57-precomposed.png">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
 
-        <!-- Tile icon for Win8 (144x144 + tile color) -->
-        <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-        <meta name="msapplication-TileColor" content="#3372DF">
+  <!-- iOS icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/touch/apple-touch-icon-144x144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/touch/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/touch/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="images/touch/apple-touch-icon-57x57-precomposed.png">
 
-        <!-- Generic Icon -->
-        <link rel="shortcut icon" href="images/touch/touch-icon-57x57.png">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+  <meta name="msapplication-TileColor" content="#3372DF">
 
-        <!-- SEO: If mobile URL is different from desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-        <!--
+  <!-- Generic Icon -->
+  <link rel="shortcut icon" href="images/touch/touch-icon-57x57.png">
+
+  <!-- SEO: If mobile URL is different from desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+  <!--
         <link rel="canonical" href="http://www.example.com/">
         -->
 
-        <!-- Chrome Add to Homescreen -->
-        <link rel="shortcut icon" sizes="196x196" href="images/touch/touch-icon-196x196.png">
+  <!-- Chrome Add to Homescreen -->
+  <link rel="shortcut icon" sizes="196x196" href="images/touch/touch-icon-196x196.png">
 
-        <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
-        <!--
+  <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+  <!--
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-title" content="">
         -->
 
-        <!-- build:css styles/components/main.min.css -->
-        <link rel="stylesheet" href="styles/h5bp.css">
-        <link rel="stylesheet" href="styles/components/components.css">
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
-        <script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
-        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <!-- build:css styles/components/main.min.css -->
+  <link rel="stylesheet" href="styles/h5bp.css">
+  <link rel="stylesheet" href="styles/components/components.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+  <script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 
-    </head>
-    <body>
-        <header class="app-bar promote-layer">
-            <div class="app-bar-container">
-                <button class="menu"><img src="images/hamburger.svg"></button>
-                <h1 class="logo">Web Starter Kit</h1>
-                <section class="app-bar-actions">
-                <!-- Put App Bar Buttons Here -->
-                </section>
-            </div>
-        </header>
+  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+  <style type="text/css">
+    rect {
+      fill: white;
+    }
+    circle {
+      stroke: #000;
+      stroke-opacity: .5;
+    }
+  </style>
+</head>
 
-        <nav class="navdrawer-container promote-layer">
-            <h4>Navigation</h4>
-            <ul>
-                <li><a href="#hello">Hello</a></li>
-                <li><a href="#get-started">Get Started</a></li>
-                <li><a href="styleguide/index.html">Style Guide</a></li>
-            </ul>
-        </nav>
+<body>
+  <!--
+  <header class="app-bar promote-layer">
+    <div class="app-bar-container">
+      <button class="menu"><img src="images/hamburger.svg">
+      </button>
+      <h1 class="logo">Web Starter Kit</h1>
+      <section class="app-bar-actions">
+      </section>
+    </div>
+  </header>
 
-        <main>
-            <p>
-    <div id='messagesDiv'></div></p>
-            <p>
-    <input type='text' id='nameInput' placeholder='Name'>
-    <input type='text' id='messageInput' placeholder='Message'>
+  <nav class="navdrawer-container promote-layer">
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="#hello">Hello</a>
+      </li>
+      <li><a href="#get-started">Get Started</a>
+      </li>
+      <li><a href="styleguide/index.html">Style Guide</a>
+      </li>
+    </ul>
+  </nav>
+-->
+
+  <main>
+    <div id="body">
+      <div id="chart"></div>
+    </div>
     <script>
-      var myDataRef = new Firebase('https://lp2zslb435p.firebaseio-demo.com/');
-      $('#messageInput').keypress(function (e) {
-        if (e.keyCode == 13) {
-          var name = $('#nameInput').val();
-          var text = $('#messageInput').val();
-          myDataRef.push({name: name, text: text});
-          $('#messageInput').val('');
+      window.onload = function() {
+
+        var w = 960,
+          h = 500;
+
+        var nodes = d3.range(5).map(function(i) {
+            return {
+              type: Math.random() * 5 | 0,
+              radius: 30,
+              fixed: true,
+              type: i,
+              x: (i + 1) * (w / 6),
+              y: h / 2
+            };
+          }),
+          color = d3.scale.category10();
+
+        var force = d3.layout.force()
+          .gravity(0)
+          .charge(0)
+          .nodes(nodes)
+          .size([w, h]);
+
+        force.start();
+
+        var svg = d3.select("#chart").append("svg:svg")
+          .attr("width", w)
+          .attr("height", h);
+
+        svg.append("svg:rect")
+          .attr("width", w)
+          .attr("height", h);
+
+        svg.selectAll("circle")
+          .data(nodes)
+          .enter().append("svg:circle")
+          .attr("r", function(d) {
+            return d.radius - 2;
+          })
+          .style("fill", function(d, i) {
+            return color(d.type);
+          });
+
+        force.on("tick", function(e) {
+          var q = d3.geom.quadtree(nodes),
+            k = e.alpha * .1,
+            i = 0,
+            n = nodes.length,
+            o;
+
+          while (++i < n) {
+            o = nodes[i];
+            if (o.fixed) continue;
+            c = nodes[o.type];
+            o.x += (c.x - o.x) * k;
+            o.y += (c.y - o.y) * k;
+            q.visit(collide(o));
+          }
+
+          svg.selectAll("circle")
+            .attr("cx", function(d) {
+              return d.x;
+            })
+            .attr("cy", function(d) {
+              return d.y;
+            });
+        });
+
+        var p0;
+        /*
+          svg.on("mousemove", function() {
+            var p1 = d3.svg.mouse(this),
+                node = {radius:Math.random() * 12 + 4, type: Math.random() * 5 | 0, x: p1[0], y: p1[1], px: (p0 || (p0 = p1))[0], py: p0[1]};
+
+            p0 = p1;
+
+            svg.append("svg:circle")
+                .data([node])
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; })
+                .attr("r", function(d) { return d.radius - 2; })
+                .style("fill", function(d) {return color(d.type);})
+                .transition()
+                  .delay(3000)
+                  .attr("r", 1e-6)
+                  .each("end", function() { nodes.splice(6, 1); })
+                  .remove();
+
+            nodes.push(node);
+            force.resume();
+          });*/
+
+        function collide(node) {
+          var r = node.radius + 16,
+            nx1 = node.x - r,
+            nx2 = node.x + r,
+            ny1 = node.y - r,
+            ny2 = node.y + r;
+          return function(quad, x1, y1, x2, y2) {
+            if (quad.point && (quad.point !== node)) {
+              var x = node.x - quad.point.x,
+                y = node.y - quad.point.y,
+                l = Math.sqrt(x * x + y * y),
+                r = node.radius + quad.point.radius;
+              if (l < r) {
+                l = (l - r) / l * .5;
+                node.px += x * l;
+                node.py += y * l;
+              }
+            }
+            return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+          };
         }
-      });
-      myDataRef.on('child_added', function(snapshot) {
-        var message = snapshot.val();
-        displayChatMessage(message.name, message.text);
-      });
-      function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      };
+
+
+
+        var myDataRef = new Firebase('https://myxke.firebaseio.com/');
+        $('#messageInput').keypress(function(e) {
+          if (e.keyCode == 13) {
+            var name = $('#nameInput').val();
+            var text = $('#messageInput').val();
+            myDataRef.push({
+              name: name,
+              text: text
+            });
+            $('#messageInput').val('');
+          }
+        });
+
+
+        myDataRef.on('child_added', function(snapshot) {
+          var message = snapshot.val();
+          var node = {
+            radius: 10,
+            type: Math.random() * 5 | 0,
+            x: 10,
+            y: 10,
+            px: 10,
+            py: 10
+          };
+
+
+          svg.append("svg:circle")
+            .data([node])
+            .attr("cx", function(d) {
+              return d.x;
+            })
+            .attr("cy", function(d) {
+              return d.y;
+            })
+            .attr("r", function(d) {
+              return d.radius - 2;
+            })
+            .style("fill", function(d) {
+              return color(d.type);
+            });
+
+          nodes.push(node);
+          force.resume();
+        });
+
+      }
     </script>
-    </p>
-        </main>
+  </main>
 
-        <!-- build:js scripts/main.min.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+  <!-- build:js scripts/main.min.js -->
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
-        <!-- Built with love using Web Starter Kit -->
-    </body>
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+    (function(b, o, i, l, e, r) {
+      b.GoogleAnalyticsObject = l;
+      b[l] || (b[l] =
+        function() {
+          (b[l].q = b[l].q || []).push(arguments)
+        });
+      b[l].l = +new Date;
+      e = o.createElement(i);
+      r = o.getElementsByTagName(i)[0];
+      e.src = '//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>
+  <!-- Built with love using Web Starter Kit -->
+</body>
+
 </html>
